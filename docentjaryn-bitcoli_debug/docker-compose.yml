@@ -4,7 +4,7 @@ version: "3.7"
 services:
   app_proxy:
     environment:
-      APP_HOST: docentjaryn-bitcoli_debug_app_1
+      APP_HOST: docentjaryndebug-bitcoli_app_1
       APP_PORT: 27608
 
   app:
@@ -16,7 +16,7 @@ services:
 #      - "27608:27608"     # UI
       - "$APP_BITCOLI_API_PORT_DEBUG:27609"     #API
     environment:
-      BITCOLI_MYSQL_HOST: "docentjaryn-bitcoli_debug_mariadb_1"
+      BITCOLI_MYSQL_HOST: "docentjaryndebug-bitcoli_mariadb_1"
       BITCOLI_MYSQL_DATABASE: "bitcoliv2"
       BITCOLI_MYSQL_USER: "root"
       BITCOLI_MYSQL_PSWD: "secret"
@@ -47,7 +47,7 @@ services:
     image:  docentjaryn/bitcoli-app:0.0.8@sha256:643a61cb6e366fd7c84dd8924cbaebda22e8874c5709a7e5d14a2b103cd79dbb
 #    container_name: bitcoli-worker
     environment:
-      BITCOLI_MYSQL_HOST: "docentjaryn-bitcoli_debug_mariadb_1"
+      BITCOLI_MYSQL_HOST: "docentjaryndebug-bitcoli_mariadb_1"
       BITCOLI_MYSQL_DATABASE: "bitcoliv2"
       BITCOLI_MYSQL_USER: "root"
       BITCOLI_MYSQL_PSWD: "secret"
