@@ -1,0 +1,24 @@
+manifestVersion: 1
+id: docentjaryn-bitcoli_debug
+category: bitcoin
+name: DEBUG-BitcoLi
+version: "0.0.8.1"
+tagline: DEBUGBITCOLI
+icon: https://bitcoli.com/img/icon-bv2.svg
+description: >-
+  DEBUG VERZE - NEPOUŽÍVAT
+developer: DocentJaryn
+website: https://bitcoli.com/DEBUG
+dependencies:
+  - lightning
+repo: https://bitcoli/debug
+support: 
+port: 8890
+gallery:
+  - https://bitcoli.com/img/android-app-cs.png
+  - https://bitcoli.com/img/android-app-eng.png
+path: ""
+releaseNotes: >-
+  makám na tom....
+submitter: DocentJaryn
+submission: https://github.com/DocentJaryn/BitcoLi/pull/1190

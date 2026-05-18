@@ -1,0 +1,99 @@
+version: "3.7"
+
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: docentjaryn-bitcoli_debug_app_1
+      APP_PORT: 27608
+
+  app:
+    user: "1000:1000"
+#    build: .
+    image:  docentjaryn/bitcoli-app:0.0.8@sha256:643a61cb6e366fd7c84dd8924cbaebda22e8874c5709a7e5d14a2b103cd79dbb
+#    container_name: bitcoli-app
+    ports:
+#      - "27608:27608"     # UI
+      - "$APP_BITCOLI_API_PORT_DEBUG:27609"     #API
+    environment:
+      BITCOLI_MYSQL_HOST: "docentjaryn-bitcoli_debug_mariadb_1"
+      BITCOLI_MYSQL_DATABASE: "bitcoliv2"
+      BITCOLI_MYSQL_USER: "root"
+      BITCOLI_MYSQL_PSWD: "secret"
+      BITCOLI_KEYS_DIR: "/data/keys"
+      BITCOLI_BACKUPS_DIR : "/data/backups"
+      BITCOLI_TOR_HOST: "$APP_BITCOLI_API_HIDDEN_SERVICE_DEBUG"
+      LND_HOST: "$APP_LIGHTNING_NODE_IP_DEBUG:$APP_LIGHTNING_NODE_REST_PORT_DEBUG"
+      LND_MACAROON: "/lnd/data/chain/bitcoin/$APP_BITCOIN_NETWORK/admin.macaroon"
+      BITCOLI_TOR_PROXY : "${TOR_PROXY_IP}:${TOR_PROXY_PORT}"
+    volumes:
+      - ${APP_DATA_DIR}/data:/data
+#      - ./src/www:/var/www
+#      - ${APP_DATA_DIR}/data/keys:/data/keys
+#      - ${APP_DATA_DIR}/data/backups:/data/backups
+#      - ${TOR_DATA_DIR}/app-${APP_ID}-api:/data/tor2
+#      - ${APP_DATA_DIR}/src/docker/apache.conf:/etc/apache2/ports.conf
+      - ${APP_LIGHTNING_NODE_DATA_DIR}:/lnd:ro
+    depends_on:
+      - mariadb
+#      - tor      
+    restart: on-failure
+    networks:
+      default:
+          ipv4_address: $APP_BITCOLI_API_IP_DEBUG
+  worker:
+    user: "1000:1000"
+#    build: .
+    image:  docentjaryn/bitcoli-app:0.0.8@sha256:643a61cb6e366fd7c84dd8924cbaebda22e8874c5709a7e5d14a2b103cd79dbb
+#    container_name: bitcoli-worker
+    environment:
+      BITCOLI_MYSQL_HOST: "docentjaryn-bitcoli_debug_mariadb_1"
+      BITCOLI_MYSQL_DATABASE: "bitcoliv2"
+      BITCOLI_MYSQL_USER: "root"
+      BITCOLI_MYSQL_PSWD: "secret"
+      BITCOLI_KEYS_DIR: "/data/keys"
+      BITCOLI_BACKUPS_DIR : "/data/backups"
+      BITCOLI_TOR_HOST: "$APP_BITCOLI_API_HIDDEN_SERVICE"
+      LND_HOST: "$APP_LIGHTNING_NODE_IP:$APP_LIGHTNING_NODE_REST_PORT"
+      LND_MACAROON: "/lnd/data/chain/bitcoin/$APP_BITCOIN_NETWORK/admin.macaroon"
+      BITCOLI_TOR_PROXY : "${TOR_PROXY_IP}:${TOR_PROXY_PORT}"
+    volumes:
+      - ${APP_DATA_DIR}/data:/data    
+ #     - ./src/www:/var/www
+#      - ${APP_DATA_DIR}/data/keys:/data/keys
+      - ${APP_LIGHTNING_NODE_DATA_DIR}:/lnd:ro
+    depends_on:
+      - mariadb
+    restart: on-failure
+    command: >
+      bash -c "
+        php /var/www/common/ln-listener.php
+      "
+
+  mariadb:
+    image: mariadb:10.5.12@sha256:dfcba5641bdbfd7cbf5b07eeed707e6a3672f46823695a0d3aba2e49bbd9b1dd
+    user: "1000:1000"
+    ports:
+      - "23306:3306"
+ #   container_name: bitcoli-db
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: bitcoliv2
+      MYSQL_USER: myapp
+      MYSQL_PASSWORD: mypass
+    volumes:
+      - ${APP_DATA_DIR}/mysql_data:/var/lib/mysql
+      - ${APP_DATA_DIR}/src/docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  tor:
+    user: "1000:1000"
+    image: getumbrel/tor:0.4.7.8@sha256:2ace83f22501f58857fa9b403009f595137fa2e7986c4fda79d82a8119072b6a
+#    container_name: bitcoli-tor
+    restart: on-failure
+    volumes:
+      - ${APP_DATA_DIR}/torrc:/etc/tor/torrc:ro
+#      - ./tor:/var/lib/tor
+      - ${TOR_DATA_DIR}:/data
+    environment:
+      HOME: "/tmp"

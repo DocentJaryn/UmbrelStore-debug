@@ -1,0 +1,17 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="100" fill="#000000"/>
+
+  <!-- Rough nodes -->
+  <circle cx="160" cy="260" r="50" fill="#4caf50"/>
+  <circle cx="352" cy="252" r="50" fill="#f7931a"/>
+
+  <!-- Lightning (aggressive) -->
+  <polygon points="270,120 200,260 260,250 220,400 340,220 280,230"
+           fill="#ffeb3b"/>
+
+  <!-- Subtle "glitch" line -->
+  <rect x="120" y="300" width="280" height="6" fill="#ffffff" opacity="0.15"/>
+
+</svg>
