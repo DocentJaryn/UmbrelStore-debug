@@ -1,5 +1,5 @@
 manifestVersion: 1
-id: docentjaryn-bitcoli_debug
+id: docentjaryndebug-bitcoli
 category: bitcoin
 name: DEBUG-BitcoLi
 version: "0.0.8.1"
