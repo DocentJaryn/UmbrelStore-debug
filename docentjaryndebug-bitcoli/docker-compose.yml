@@ -10,7 +10,7 @@ services:
   app:
     user: "1000:1000"
 #    build: .
-    image:  docentjaryn/bitcoli-app:0.0.9@sha256:457502d636ad7e9af82648ced572ac8f8af490089d8946709bbf4675fa222659
+    image:  docentjaryn/bitcoli-app:0.0.9@sha256:7f35ec744eab6552faf59a67c26560726a182964d32dfef26f0b630a15013a5b
 #    container_name: bitcoli-app
     ports:
 #      - "27608:27608"     # UI
@@ -44,7 +44,7 @@ services:
   worker:
     user: "1000:1000"
 #    build: .
-    image:  docentjaryn/bitcoli-app:0.0.9@sha256:457502d636ad7e9af82648ced572ac8f8af490089d8946709bbf4675fa222659
+    image:  docentjaryn/bitcoli-app:0.0.9@sha256:7f35ec744eab6552faf59a67c26560726a182964d32dfef26f0b630a15013a5b
 #    container_name: bitcoli-worker
     environment:
       BITCOLI_MYSQL_HOST: "docentjaryndebug-bitcoli_mariadb_1"
