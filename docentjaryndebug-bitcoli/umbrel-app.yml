@@ -15,8 +15,7 @@ repo: https://bitcoli/debug
 support: 
 port: 8890
 gallery:
-  - https://bitcoli.com/img/android-app-cs.png
-  - https://bitcoli.com/img/android-app-eng.png
+  - https://bitcoli.com/bv2/img/ubrel-main.png
 path: ""
 releaseNotes: >-
   makám na tom....
