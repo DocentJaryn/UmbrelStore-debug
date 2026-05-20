@@ -64,7 +64,7 @@ services:
       - ${APP_LIGHTNING_NODE_DATA_DIR}:/lnd:ro
     depends_on:
       - mariadb
-    restart: on-failure
+    restart: always
     command: >
       bash -c "
         php /var/www/common/ln-listener.php
