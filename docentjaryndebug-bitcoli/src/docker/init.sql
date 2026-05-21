@@ -148,7 +148,7 @@ CREATE TABLE `backup_nodes` (
 
 INSERT INTO `config` (`id`, `value`, `description`) VALUES ('settle_index', '1', 'Index poslední zpracované LND transakce');
 INSERT INTO `config` (`id`, `value`, `description`) VALUES ('node_name', 'default name', 'Název serveru');
-INSERT INTO `config` (`id`, `value`, `description`) VALUES ('terms', '{\n    \"lng\": {\n        \"en\": \"This wallet is for internal testing only and may be shut down at any time without prior notice. \\nPlease do not send more than you are willing to lose.\",\n        \"cs\": \"Tato peněženka je určena pouze pro interní testování a může být kdykoliv vypnuta bez předchozího varování.\\r\\nProsím neposílejte do ní více než jste ochotni ztratit. \"\n    },\n    \"node_pub_key\": \"\",\n    \"max_balance_sat\": 0,\n    \"fee_ppm\": 0\n}', 'podmínky používání');
+INSERT INTO `config` (`id`, `value`, `description`) VALUES ('terms', '{\n    \"lng\": {\n        \"en\": \"This wallet is operated for a small circle of acquaintances and is intended primarily for everyday Lightning payments.\\r\\nI recommend storing only small amounts in it.\\r\\nIn the event of service termination, notice will be provided at least 90 days in advance.\",\n        \"cs\": \"Tato peněženka je provozována pro úzký okruh známých a slouží primárně pro běžné Lightning platby.\\r\\nDoporučuji v ní uchovávat pouze menší částky.\\r\\nV případě ukončení provozu bude upozornění zveřejněno minimálně 90 dní předem.\"\n    },\n    \"node_pub_key\": \"\",\n    \"max_balance_sat\": 0,\n    \"fee_ppm\": 0\n}', 'podmínky používání');
 INSERT INTO `config` (`id`, `value`, `description`) VALUES ('backup_pswd', random_string(15), 'Heslo pro zálohování na mém serveru');
 
 INSERT INTO `user_group` (`level`, `max_balance_sat`, `fee_ppm`, `name`) VALUES ('0', '0', '0', 'Low trust');
@@ -161,6 +161,8 @@ INSERT INTO `invitations` (`level`, `id`, `description`, `cnt`, `used`, `created
 
 INSERT INTO `backup_nodes` (`url`, `ed_pub`, `pswd`, `description`) VALUES ('#defaultbackup#', '', '', 'Default backup server (no guarantee)');
 
+INSERT INTO `config` (`id`, `value`, `description`) VALUES ('db_version',   '1', 'DB schema version; compared with DB_VERSION constant in constants.php');
+INSERT INTO `config` (`id`, `value`, `description`) VALUES ('db_upgrading', '0', '1 = DB schema migration in progress, app shows upgrading.php');
 
 /* 
 !!! Pouze pro usnadnění vývoje, v produkci se musí smazat !!!
