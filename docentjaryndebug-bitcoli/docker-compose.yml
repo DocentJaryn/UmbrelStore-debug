@@ -10,7 +10,7 @@ services:
   app:
     user: "1000:1000"
 #    build: .
-    image:  docentjaryn/bitcoli-app:0.0.9@sha256:5895ed1136ee6a2395c92ff7fbfd9f4cc944f0a9a31e93da527c3d6cdbf8e3d0
+    image:  docentjaryn/bitcoli-app:0.0.10@sha256:097f5681c2cd9b1f2d012fb7e04caa5f52beee2def941f3c19ea6f7e82fb6a6d
 #    container_name: bitcoli-app
     ports:
 #      - "27608:27608"     # UI
