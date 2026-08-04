@@ -14,7 +14,7 @@ services:
 #    container_name: bitcoli-app
     ports:
 #      - "27608:27608"     # UI
-      - "$APP_BITCOLI_API_PORT_DEBUG:27609"     #API
+      - "$BITCOLI_API_PORT:27609"     #API
     environment:
       BITCOLI_MYSQL_HOST: "docentjaryndebug-bitcoli_mariadb_1"
       BITCOLI_MYSQL_DATABASE: "bitcoliv2"
