@@ -14,7 +14,7 @@ services:
 #    container_name: bitcoli-app
     ports:
 #      - "27608:27608"     # UI
-      - "$BITCOLI_API_PORT:27609"     #API
+      - "$APP_BITCOLI_API_PORT_DEBUG:27609"     #API
     environment:
       BITCOLI_MYSQL_HOST: "docentjaryndebug-bitcoli_mariadb_1"
       BITCOLI_MYSQL_DATABASE: "bitcoliv2"
@@ -26,6 +26,7 @@ services:
       LND_HOST: "$APP_LIGHTNING_NODE_IP:$APP_LIGHTNING_NODE_REST_PORT"
       LND_MACAROON: "/lnd/data/chain/bitcoin/$APP_BITCOIN_NETWORK/admin.macaroon"
       BITCOLI_TOR_PROXY : "${TOR_PROXY_IP}:${TOR_PROXY_PORT}"
+      API_PORT : "$APP_BITCOLI_API_PORT_DEBUG"
     volumes:
       - ${APP_DATA_DIR}/data:/data
 #      - ./src/www:/var/www
@@ -58,6 +59,7 @@ services:
       LND_HOST: "$APP_LIGHTNING_NODE_IP:$APP_LIGHTNING_NODE_REST_PORT"
       LND_MACAROON: "/lnd/data/chain/bitcoin/$APP_BITCOIN_NETWORK/admin.macaroon"
       BITCOLI_TOR_PROXY : "${TOR_PROXY_IP}:${TOR_PROXY_PORT}"
+      API_PORT : "$APP_BITCOLI_API_PORT_DEBUG"
     volumes:
       - ${APP_DATA_DIR}/data:/data    
  #     - ./src/www:/var/www
