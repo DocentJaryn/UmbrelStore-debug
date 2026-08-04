@@ -10,7 +10,7 @@ services:
   app:
     user: "1000:1000"
 #    build: .
-    image:  docentjaryn/bitcoli-app:0.0.10@sha256:7f0887ff961199d3d22d398c7008528982de96c513304f896f9477ec72086e1d
+    image:  docentjaryn/bitcoli-app:0.0.10@sha256:ae3272e1c0ca6636cdc6bffda3f4be0cdeeb2131fcb9c7a1772d298739b9758c
 #    container_name: bitcoli-app
     ports:
 #      - "27608:27608"     # UI
@@ -45,7 +45,7 @@ services:
   worker:
     user: "1000:1000"
 #    build: .
-    image:  docentjaryn/bitcoli-app:0.0.9@sha256:5895ed1136ee6a2395c92ff7fbfd9f4cc944f0a9a31e93da527c3d6cdbf8e3d0
+    image:  docentjaryn/bitcoli-app:0.0.10@sha256:ae3272e1c0ca6636cdc6bffda3f4be0cdeeb2131fcb9c7a1772d298739b9758c
     init: true
 #    container_name: bitcoli-worker
     environment:
