@@ -2,7 +2,7 @@ manifestVersion: 1
 id: docentjaryndebug-bitcoli
 category: bitcoin
 name: DEBUG-BitcoLi2
-version: "0.0.9.9"
+version: "0.0.9.8"
 tagline: DEBUGBITCOLI
 icon: https://bitcoli.com/img/icon-bv2.svg
 description: >-
