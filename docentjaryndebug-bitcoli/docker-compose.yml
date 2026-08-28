@@ -47,7 +47,6 @@ services:
     user: "1000:1000"
 #    build: .
     image:  docentjaryn/bitcoli-app:0.0.10@sha256:c7d2970278adc319b6f3988ef8b0525162b9b79fc1d7d4ec4222448e9a95e40d
-    init: true
 #    container_name: bitcoli-worker
     environment:
       BITCOLI_MYSQL_HOST: "docentjaryndebug-bitcoli_mariadb_1"
